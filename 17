@@ -1,0 +1,132 @@
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+// Task 1
+void removeCharacterAtIndex(string& str, int index) {
+    if (index >= 0 && index < str.length()) {
+        for (int i = index; i < str.length() - 1; ++i) {
+            str[i] = str[i + 1];
+        }
+        str.pop_back();
+    }
+}
+
+// Task 2
+void removeAllOccurrences(string& str, char ch) {
+    int j = 0;
+    for (int i = 0; i < str.length(); ++i) {
+        if (str[i] != ch) {
+            str[j++] = str[i];
+        }
+    }
+    str.resize(j);
+}
+
+// Task 3
+void insertCharacterAtIndex(string& str, int index, char ch) {
+    if (index >= 0 && index <= str.length()) {
+        str.insert(index, 1, ch);
+    }
+}
+
+// Task 4
+void replaceDotsWithExclamations(string& str) {
+    for (int i = 0; i < str.length(); ++i) {
+        if (str[i] == '.') {
+            str[i] = '!';
+        }
+    }
+}
+
+// Task 5
+int countOccurrences(const string& str, char ch) {
+    int count = 0;
+    for (char c : str) {
+        if (c == ch) {
+            ++count;
+        }
+    }
+    return count;
+}
+
+// Task 6
+void countCharacters(const string& str, int& letters, int& digits, int& others) {
+    letters = digits = others = 0;
+    for (char c : str) {
+        if (isalpha(c)) {
+            ++letters;
+        }
+        else if (isdigit(c)) {
+            ++digits;
+        }
+        else {
+            ++others;
+        }
+    }
+}
+
+int main() {
+    string input;
+    char ch;
+    int index;
+
+    cout << "Task 1: Remove character at specified index\n";
+    cout << "Enter a string: ";
+    getline(cin, input);
+    cout << "Enter the index of the character to remove: ";
+    cin >> index;
+    removeCharacterAtIndex(input, index);
+    cout << "Result: " << input << endl;
+
+    cin.ignore();
+
+    cout << "\nTask 2: Remove all occurrences of a specified character\n";
+    cout << "Enter a string: ";
+    getline(cin, input);
+    cout << "Enter the character to remove: ";
+    cin >> ch;
+    removeAllOccurrences(input, ch);
+    cout << "Result: " << input << endl;
+
+    cin.ignore();
+
+    cout << "\nTask 3: Insert a character at specified position\n";
+    cout << "Enter a string: ";
+    getline(cin, input);
+    cout << "Enter the index to insert at: ";
+    cin >> index;
+    cout << "Enter the character to insert: ";
+    cin >> ch;
+    insertCharacterAtIndex(input, index, ch);
+    cout << "Result: " << input << endl;
+
+    cin.ignore();
+
+    cout << "\nTask 4: Replace all dots with exclamation marks\n";
+    cout << "Enter a string: ";
+    getline(cin, input);
+    replaceDotsWithExclamations(input);
+    cout << "Result: " << input << endl;
+
+    cin.ignore();
+
+    cout << "\nTask 5: Count occurrences of a character in a string\n";
+    cout << "Enter a string: ";
+    getline(cin, input);
+    cout << "Enter the character to count: ";
+    cin >> ch;
+    cout << "Occurrences: " << countOccurrences(input, ch) << endl;
+
+    cin.ignore();
+
+    cout << "\nTask 6: Count letters, digits, and other characters in a string\n";
+    cout << "Enter a string: ";
+    getline(cin, input);
+    int letters, digits, others;
+    countCharacters(input, letters, digits, others);
+    cout << "Letters: " << letters << ", Digits: " << digits << ", Others: " << others << endl;
+
+    return 0;
+}
